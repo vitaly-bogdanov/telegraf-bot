@@ -1,0 +1,1 @@
+export { startScene } from './start.scene.js';

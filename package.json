@@ -1,0 +1,21 @@
+{
+  "name": "telegraf-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.26.0",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "telegraf": "^4.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9",
+    "prisma": "^2.26.0"
+  }
+}

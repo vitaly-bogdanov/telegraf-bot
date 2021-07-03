@@ -1,0 +1,1 @@
+export { addCategoryScene } from './addCategory.scene.js';
