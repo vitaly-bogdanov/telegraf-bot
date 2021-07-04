@@ -6,7 +6,7 @@ import { addCategoryKeyboard } from './addManager.keyboard.js';
 
 export const addManagerScene = new Scenes.BaseScene(ADD_MANAGER_ACTION_NAME)
   .enter(async ctx => {
-    const text = 'Введите название категории 👇';
+    const text = 'Введите ID менеджера 👇';
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text, addCategoryKeyboard))
   })
   .action(ACTION.BACK, ctx => ctx.scene.enter(ACTION.BACK))

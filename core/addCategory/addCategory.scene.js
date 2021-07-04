@@ -1,8 +1,13 @@
 import { Scenes } from 'telegraf';
 
-import { saveMessageIdInSessionFromReplyHelper, clearMessageIdListInSessionHelper, saveMessageIdMessageIdInSessionFromQueryHelper } from '../../main/telegram/index.js';
-import { ADD_CATEGORY_ACTION_NAME, ACTION } from './addCategory.constant.js';
 import { addCategoryKeyboard } from './addCategory.keyboard.js';
+import { ADD_CATEGORY_ACTION_NAME, ACTION } from './addCategory.constant.js';
+import { addCategoryService } from './addCategory.service.js'
+import {
+  saveMessageIdInSessionFromReplyHelper,
+  clearMessageIdListInSessionHelper,
+  saveMessageIdMessageIdInSessionFromQueryHelper
+} from '../../main/telegram/index.js';
 
 export const addCategoryScene = new Scenes.BaseScene(ADD_CATEGORY_ACTION_NAME)
   .enter(async ctx => {
@@ -10,10 +15,13 @@ export const addCategoryScene = new Scenes.BaseScene(ADD_CATEGORY_ACTION_NAME)
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text, addCategoryKeyboard))
   })
   .action(ACTION.BACK, ctx => ctx.scene.enter(ACTION.BACK))
-  .on('text', ctx => {
+  .on('text', async ctx => {
     saveMessageIdMessageIdInSessionFromQueryHelper(ctx);
-    
-
+    const categoryDescription = ctx.message.text;
+    await addCategoryService.createCategory(categoryDescription);
+    const text = 'Категория успешно создана!'
+    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text))
+    setTimeout(() => ctx.scene.enter(ACTION.BACK), 1500);
   })
   .on('message', async ctx => {
     saveMessageIdMessageIdInSessionFromQueryHelper(ctx);
@@ -23,4 +31,4 @@ export const addCategoryScene = new Scenes.BaseScene(ADD_CATEGORY_ACTION_NAME)
       ctx.scene.reenter();
     }, 2000);
   })
-  .leave(ctx => clearMessageIdListInSessionHelper(ctx))
+  .leave(ctx => clearMessageIdListInSessionHelper(ctx));
