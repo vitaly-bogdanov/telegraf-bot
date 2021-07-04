@@ -1,9 +1,10 @@
 version: '3.1'
 
 services:
-  db:
+  postgress:
     image: postgres
     restart: always
+    working_dir: /home/node/app
     env_file:
       - .env
     environment:
@@ -12,3 +13,16 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - ${DB_PORT}:5432
+    volumes:
+      - ./data:./var/lib/postgresql/data
+  # node:
+  #   image: node:latest
+  #   user: node
+  #   working_dir: /home/node/app
+  #   environment:
+  #     - NODE_ENV=production
+  #   volumes:
+  #     - ./:/home/node/app
+  #   expose:
+  #     - "8081"
+  #   command: "yarn start"
