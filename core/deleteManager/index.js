@@ -1,0 +1,1 @@
+export { deleteManagerScene } from './deleteManager.scene.js';

@@ -7,7 +7,7 @@ import {
 } from '../../main/telegram/index.js';
 import { categoriesKeyboard, categoryKeyboardGenerator } from './categories.keyboard.js';
 import { categoriesService } from './categories.service.js';
-
+import { sleepHelper, SLEEP_MS } from '../../lib/telegram/index.js';
 
 export const categoriesScene = new Scenes.BaseScene(CATEGORIES_ACTION_NAME)
   .enter(async (ctx) => {
@@ -15,6 +15,7 @@ export const categoriesScene = new Scenes.BaseScene(CATEGORIES_ACTION_NAME)
     for (let category of categories) {
       const categoryDescription = `📗 ${category.description}`;
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(categoryDescription, categoryKeyboardGenerator(category.id)));
+      sleepHelper(SLEEP_MS);
     }
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('🗂 Категории ', categoriesKeyboard));
   })

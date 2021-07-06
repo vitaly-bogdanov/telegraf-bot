@@ -14,6 +14,7 @@ import { deleteContentScene } from '../../core/deleteContent/index.js';
 import { changeContentScene } from '../../core/changeContent/index.js';
 import { editContentDescriptionScene } from '../../core/editContentDescription/index.js'
 import { editContentDataScene } from '../../core/editContentData/index.js';
+import {} from '../../core/deleteManager/index.js';
 
 export const stage = new Scenes.Stage([
   startScene, menuScene,

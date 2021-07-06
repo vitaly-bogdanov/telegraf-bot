@@ -7,6 +7,7 @@ import {
 import { CONTENTS_ACTION_NAME, ACTION } from './contents.constant.js';
 import { contentsKeyboard, contentKeyboardGenerator } from './contents.keyboard.js';
 import { contentsService } from './contents.service.js';
+import { sleepHelper, SLEEP_MS } from '../../lib/telegram/index.js';
 
 export const contentsScene = new Scenes.BaseScene(CONTENTS_ACTION_NAME)
   .enter(async ctx => {
@@ -17,6 +18,7 @@ export const contentsScene = new Scenes.BaseScene(CONTENTS_ACTION_NAME)
     for (let content of currentCategory.contents) {
       let contentDescription = `📕 ${content.description}`
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(contentDescription, contentKeyboardGenerator(content.id)));
+      sleepHelper(SLEEP_MS);
     }
     const text = `📗 Контент категории: "${categoryDescription}"`
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text, contentsKeyboard));

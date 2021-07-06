@@ -8,6 +8,7 @@ import { CHANGE_CONTENT_ACTION_NAME, ACTION } from './changeContent.constant.js'
 import { changeContentService } from './changeContent.service.js';
 import { FORMAT } from '../../lib/telegram/index.js';
 import { changeContentKeyboard } from './changeContent.keyboard.js';
+import { sleepHelper, SLEEP_MS } from '../../lib/telegram/index.js';
 
 export const changeContentScene = new Scenes.BaseScene(CHANGE_CONTENT_ACTION_NAME)
   .enter(async ctx => {
@@ -15,6 +16,7 @@ export const changeContentScene = new Scenes.BaseScene(CHANGE_CONTENT_ACTION_NAM
     const content = await changeContentService.getContent(ctx.session.contentId);
     ctx.session.categoryId = content.categoryId;
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('<strong>Контент:</strong>', { parse_mode: 'HTML' }));
+    sleepHelper(SLEEP_MS);
     switch(content.format) {
       case FORMAT.AUDIO:
         await saveMessageIdInSessionFromReplyHelper(ctx, ctx.replyWithAudio(content.data));
@@ -35,6 +37,7 @@ export const changeContentScene = new Scenes.BaseScene(CHANGE_CONTENT_ACTION_NAM
         await saveMessageIdInSessionFromReplyHelper(ctx, ctx.replyWithVideo(content.data));
     }
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('<strong>Описание контента:</strong>', { parse_mode: 'HTML' }));
+    sleepHelper(SLEEP_MS);
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(content.description, changeContentKeyboard));
   })
   .action(ACTION.DESCRIPTION, ctx => {

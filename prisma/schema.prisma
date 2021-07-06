@@ -12,11 +12,11 @@ generator client {
 }
 
 model User {
-  id         Int @id @default(autoincrement())
-  username   String
-  role       String  @default("manager")
-  telegramId Int
-  password   String?
+  id          Int     @id @default(autoincrement())
+  username    String
+  role        String  @default("unconfirmed")
+  telegramId  Int     @unique
+  password    String?
 }
 
 model Category {
