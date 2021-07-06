@@ -27,3 +27,4 @@ export const deleteContentScene = new Scenes.BaseScene(DELETE_CONTENT_ACTION_NAM
     delete ctx.session.contentId;
     clearMessageIdListInSessionHelper(ctx);
   });
+  

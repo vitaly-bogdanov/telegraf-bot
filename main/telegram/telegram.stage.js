@@ -12,6 +12,8 @@ import { addContentDescriptionScene } from '../../core/addContentDescription/ind
 import { addContentDataScene } from '../../core/addContentData/index.js';
 import { deleteContentScene } from '../../core/deleteContent/index.js';
 import { changeContentScene } from '../../core/changeContent/index.js';
+import { editContentDescriptionScene } from '../../core/editContentDescription/index.js'
+import { editContentDataScene } from '../../core/editContentData/index.js';
 
 export const stage = new Scenes.Stage([
   startScene, menuScene,
@@ -19,5 +21,6 @@ export const stage = new Scenes.Stage([
   mailingScene, addManagerScene,
   contentsScene, deleteCategoryScene,
   addContentDescriptionScene, addContentDataScene,
-  deleteContentScene, changeContentScene
+  deleteContentScene, changeContentScene,
+  editContentDescriptionScene, editContentDataScene
 ]);
