@@ -13,7 +13,7 @@ export const categoriesScene = new Scenes.BaseScene(CATEGORIES_ACTION_NAME)
       const categoryDescription = `📗 ${category.description}`;
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(categoryDescription, categoryKeyboardGenerator(category.id)));
     }
-    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Категории 🗂', categoriesKeyboard));
+    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('🗂 Категории ', categoriesKeyboard));
   })
   .action(new RegExp(`${ACTION.VIEW}\/[0-9]+`), ctx => { 
     ctx.match.index = +ctx.match[0].split('/')[1];

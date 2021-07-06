@@ -7,8 +7,8 @@ import { MENU_ACTION_NAME } from '../menu/index.js';
 
 export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
   .enter(async (ctx) => {
-    const text = `Добро пожаловать!\nВаш ID:${ctx.message.from.id}`;
-    saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text));
+    const text = `🎉 Добро пожаловать!\nВаш ID: <strong>${ctx.message.from.id}</strong>`;
+    saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text, { parse_mode: 'HTML' }));
   })
   .on('text', async (ctx) => {
     saveMessageIdInSessionFromQueryHelper(ctx);
@@ -16,18 +16,14 @@ export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
       ctx.scene.enter(MENU_ACTION_NAME);
     } else {
       saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Неверный пароль!'));
-      setTimeout(() => {
-      ctx.scene.reenter();
-      }, 1000);
+      setTimeout(() => ctx.scene.reenter(), 1000);
     }
   })
   .on('message', async ctx => {
     saveMessageIdInSessionFromQueryHelper(ctx);
     const text = 'Тут не файлы кидать нужно! А ввести пароль!';
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text));
-    setTimeout(() => {
-      ctx.scene.reenter();
-    }, 2000);
+    setTimeout(() => ctx.scene.reenter(), 2000);
   })
   .leave((ctx) => {
     clearMessageIdListInSessionHelper(ctx);
