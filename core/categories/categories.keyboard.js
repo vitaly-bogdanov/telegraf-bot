@@ -4,8 +4,8 @@ import { ACTION } from './categories.constant.js';
 
 export const categoryKeyboardGenerator = (categoryId) => {
   return Markup.inlineKeyboard([
-    Markup.button.callback('Обзор', `${ACTION.VIEW}/${categoryId}`),
-    Markup.button.callback('Удалить', `${ACTION.DELETE}/${categoryId}`)
+    Markup.button.callback('Обзор 👁', `${ACTION.VIEW}/${categoryId}`),
+    Markup.button.callback('Удалить 🗑', `${ACTION.DELETE}/${categoryId}`)
   ]).oneTime().resize();
 };
 

@@ -6,7 +6,7 @@ import { addCategoryService } from './addCategory.service.js'
 import {
   saveMessageIdInSessionFromReplyHelper,
   clearMessageIdListInSessionHelper,
-  saveMessageIdMessageIdInSessionFromQueryHelper
+  saveMessageIdInSessionFromQueryHelper
 } from '../../main/telegram/index.js';
 
 export const addCategoryScene = new Scenes.BaseScene(ADD_CATEGORY_ACTION_NAME)
@@ -16,7 +16,7 @@ export const addCategoryScene = new Scenes.BaseScene(ADD_CATEGORY_ACTION_NAME)
   })
   .action(ACTION.BACK, ctx => ctx.scene.enter(ACTION.BACK))
   .on('text', async ctx => {
-    saveMessageIdMessageIdInSessionFromQueryHelper(ctx);
+    saveMessageIdInSessionFromQueryHelper(ctx);
     const categoryDescription = ctx.message.text;
     await addCategoryService.createCategory(categoryDescription);
     const text = 'Категория успешно создана!'
@@ -24,7 +24,7 @@ export const addCategoryScene = new Scenes.BaseScene(ADD_CATEGORY_ACTION_NAME)
     setTimeout(() => ctx.scene.enter(ACTION.BACK), 1500);
   })
   .on('message', async ctx => {
-    saveMessageIdMessageIdInSessionFromQueryHelper(ctx);
+    saveMessageIdInSessionFromQueryHelper(ctx);
     const text = 'Нужно указать название для категории!';
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text));
     setTimeout(() => {

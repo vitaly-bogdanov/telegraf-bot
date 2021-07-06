@@ -7,7 +7,6 @@ export const cliCore = async () => {
     case COMMAND.SET_ADMIN_ROLE:
       const password = getPassword();
       const telegramId = getTelegramId();
-      console.log(telegramId, password);
       await cliService.setAdminRole(telegramId, password);
       break;
       

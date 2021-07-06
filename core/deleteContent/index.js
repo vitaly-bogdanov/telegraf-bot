@@ -1,0 +1,1 @@
+export { deleteContentScene } from './deleteContent.scene.js';

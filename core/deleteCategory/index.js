@@ -1,0 +1,1 @@
+export { deleteCategoryScene } from './deleteCategory.scene.js';

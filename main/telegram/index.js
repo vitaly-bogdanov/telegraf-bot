@@ -2,5 +2,5 @@ export { bot } from './telegram.core.js';
 export { 
   clearMessageIdListInSessionHelper, 
   saveMessageIdInSessionFromReplyHelper, 
-  saveMessageIdMessageIdInSessionFromQueryHelper 
+  saveMessageIdInSessionFromQueryHelper 
 } from './telegram.helper.js';

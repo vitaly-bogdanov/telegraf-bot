@@ -5,22 +5,23 @@ import { saveMessageIdInSessionFromReplyHelper, clearMessageIdListInSessionHelpe
 import { categoriesKeyboard, categoryKeyboardGenerator } from './categories.keyboard.js';
 import { categoriesService } from './categories.service.js';
 
+
 export const categoriesScene = new Scenes.BaseScene(CATEGORIES_ACTION_NAME)
   .enter(async (ctx) => {
     const categories = await categoriesService.getCategories();
     for (let category of categories) {
-      await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(category.description, categoryKeyboardGenerator(category.id)));
-      categoriesScene
-        .action(`${ACTION.VIEW}/${category.id}`, ctx => { 
-          ctx.match.index = category.id;
-          ctx.scene.enter(ACTION.VIEW);
-        })
-        .action(`${ACTION.DELETE}/${category.id}`, ctx => { 
-          ctx.match.index = category.id;
-          ctx.scene.enter('kkkkhhk');
-        });
+      const categoryDescription = `📗 ${category.description}`;
+      await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(categoryDescription, categoryKeyboardGenerator(category.id)));
     }
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Категории 🗂', categoriesKeyboard));
+  })
+  .action(new RegExp(`${ACTION.VIEW}\/[0-9]+`), ctx => { 
+    ctx.match.index = +ctx.match[0].split('/')[1];
+    ctx.scene.enter(ACTION.VIEW);
+  })
+  .action(new RegExp(`${ACTION.DELETE}\/[0-9]+`), ctx => { 
+    ctx.match.index = +ctx.match[0].split('/')[1];
+    ctx.scene.enter(ACTION.DELETE);
   })
   .action(ACTION.ADD_CATEGORY, ctx => ctx.scene.enter(ACTION.ADD_CATEGORY))
   .action(ACTION.BACK, ctx => ctx.scene.enter(ACTION.BACK))

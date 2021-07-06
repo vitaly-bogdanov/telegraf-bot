@@ -1,7 +1,5 @@
 import Prisma from '@prisma/client';
 
-import { getHashHelper } from '../../lib/bcrypt/index.js';
-
 const { PrismaClient } = Prisma;
 
 class AddCategoryService {

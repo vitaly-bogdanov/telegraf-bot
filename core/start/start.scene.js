@@ -1,6 +1,6 @@
 import { Scenes } from 'telegraf';
 
-import { clearMessageIdListInSessionHelper, saveMessageIdInSessionFromReplyHelper, saveMessageIdMessageIdInSessionFromQueryHelper } from '../../main/telegram/index.js';
+import { clearMessageIdListInSessionHelper, saveMessageIdInSessionFromReplyHelper, saveMessageIdInSessionFromQueryHelper } from '../../main/telegram/index.js';
 
 import { START_ACTION_NAME } from './start.constant.js';
 import { MENU_ACTION_NAME } from '../menu/index.js';
@@ -11,7 +11,7 @@ export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
     saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text));
   })
   .on('text', async (ctx) => {
-    saveMessageIdMessageIdInSessionFromQueryHelper(ctx);
+    saveMessageIdInSessionFromQueryHelper(ctx);
     if (ctx.message.text === '12345') {
       ctx.scene.enter(MENU_ACTION_NAME);
     } else {
@@ -22,7 +22,7 @@ export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
     }
   })
   .on('message', async ctx => {
-    saveMessageIdMessageIdInSessionFromQueryHelper(ctx);
+    saveMessageIdInSessionFromQueryHelper(ctx);
     const text = 'Тут не файлы кидать нужно! А ввести пароль!';
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text));
     setTimeout(() => {
