@@ -1,6 +1,9 @@
 import { Scenes } from 'telegraf';
 
-import { saveMessageIdInSessionFromReplyHelper, clearMessageIdListInSessionHelper } from '../../main/telegram/index.js';
+import { 
+  saveMessageIdInSessionFromReplyHelper,
+  clearMessageIdListInSessionHelper 
+} from '../../main/telegram/index.js';
 import { CONTENTS_ACTION_NAME, ACTION } from './contents.constant.js';
 import { contentsKeyboard, contentKeyboardGenerator } from './contents.keyboard.js';
 import { contentsService } from './contents.service.js';

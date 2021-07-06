@@ -1,6 +1,10 @@
 import { Scenes } from 'telegraf';
 
-import { saveMessageIdInSessionFromReplyHelper, clearMessageIdListInSessionHelper, saveMessageIdInSessionFromQueryHelper } from '../../main/telegram/index.js';
+import { 
+  saveMessageIdInSessionFromReplyHelper, 
+  clearMessageIdListInSessionHelper, 
+  saveMessageIdInSessionFromQueryHelper 
+} from '../../main/telegram/index.js';
 import { menuKeyboard } from './menu.keyboard.js';
 import { MENU_ACTION_NAME, ACTION } from './menu.constant.js';
 

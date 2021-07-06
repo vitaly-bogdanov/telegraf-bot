@@ -1,6 +1,10 @@
 import { Scenes } from 'telegraf';
 
-import { saveMessageIdInSessionFromReplyHelper, clearMessageIdListInSessionHelper, saveMessageIdInSessionFromQueryHelper } from '../../main/telegram/index.js';
+import { 
+  saveMessageIdInSessionFromReplyHelper, 
+  clearMessageIdListInSessionHelper, 
+  saveMessageIdInSessionFromQueryHelper 
+} from '../../main/telegram/index.js';
 import { EDIT_CONTENT_DESCRIPTION_ACTION_NAME, ACTION } from './editContentDescription.constant.js';
 import { editContentDescriptionService } from './editContentDescription.service.js';
 import { editContentDescriptionKeyboard } from './editContentDescription.keyboard.js';

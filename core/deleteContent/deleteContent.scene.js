@@ -1,7 +1,10 @@
 import { Scenes } from 'telegraf';
 
 import { DELETE_CONTENT_ACTION_NAME, ACTION } from './deleteContent.constant.js';
-import { saveMessageIdInSessionFromReplyHelper, clearMessageIdListInSessionHelper } from '../../main/telegram/index.js';
+import { 
+  saveMessageIdInSessionFromReplyHelper, 
+  clearMessageIdListInSessionHelper 
+} from '../../main/telegram/index.js';
 import { deleteContentService } from './deleteContent.service.js';
 import { deleteContentKeyboard } from './deleteContent.keyboard.js';
 

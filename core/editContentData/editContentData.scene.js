@@ -1,7 +1,11 @@
 import { Scenes } from 'telegraf';
 
 import { EDIT_CONTENT_DATA_ACTION_NAME, ACTION } from './editContentData.constant.js';
-import { saveMessageIdInSessionFromReplyHelper, clearMessageIdListInSessionHelper, saveMessageIdInSessionFromQueryHelper } from '../../main/telegram/index.js';
+import { 
+  saveMessageIdInSessionFromReplyHelper, 
+  clearMessageIdListInSessionHelper, 
+  saveMessageIdInSessionFromQueryHelper 
+} from '../../main/telegram/index.js';
 import { editContentDataService } from './editContentData.service.js';
 import { editContentDataKeyboard } from './editContentData.keyboard.js';
 import { FORMAT } from '../../lib/telegram/index.js';

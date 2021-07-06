@@ -1,7 +1,10 @@
 import { Scenes } from 'telegraf';
 
 import { CATEGORIES_ACTION_NAME, ACTION } from './categories.constant.js';
-import { saveMessageIdInSessionFromReplyHelper, clearMessageIdListInSessionHelper } from '../../main/telegram/index.js';
+import { 
+  saveMessageIdInSessionFromReplyHelper, 
+  clearMessageIdListInSessionHelper 
+} from '../../main/telegram/index.js';
 import { categoriesKeyboard, categoryKeyboardGenerator } from './categories.keyboard.js';
 import { categoriesService } from './categories.service.js';
 

@@ -1,6 +1,7 @@
 import { Scenes } from 'telegraf';
 
-import { ADD_CONTENT_DATA_ACTION_NAME, ACTION, FORMAT } from './addContentData.constant.js';
+import { ADD_CONTENT_DATA_ACTION_NAME, ACTION } from './addContentData.constant.js';
+import { FORMAT } from '../../lib/telegram/index.js';
 import {
   saveMessageIdInSessionFromReplyHelper,
   clearMessageIdListInSessionHelper,
