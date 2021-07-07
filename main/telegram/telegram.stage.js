@@ -14,14 +14,14 @@ import { deleteContentScene } from '../../core/deleteContent/index.js';
 import { changeContentScene } from '../../core/changeContent/index.js';
 import { editContentDescriptionScene } from '../../core/editContentDescription/index.js'
 import { editContentDataScene } from '../../core/editContentData/index.js';
-import {} from '../../core/deleteManager/index.js';
+import { deleteManagerScene } from '../../core/deleteManager/index.js';
+import { shedulesScene } from '../../core/schedules/index.js';
 
 export const stage = new Scenes.Stage([
-  startScene, menuScene,
-  categoriesScene, addCategoryScene,
-  mailingScene, addManagerScene,
-  contentsScene, deleteCategoryScene,
-  addContentDescriptionScene, addContentDataScene,
-  deleteContentScene, changeContentScene,
-  editContentDescriptionScene, editContentDataScene
+  startScene, menuScene, categoriesScene,
+  addCategoryScene, mailingScene, addManagerScene,
+  contentsScene, deleteCategoryScene, addContentDescriptionScene,
+  addContentDataScene, deleteContentScene, changeContentScene,
+  editContentDescriptionScene, editContentDataScene, deleteManagerScene,
+  shedulesScene
 ]);

@@ -1,2 +1,2 @@
 export const DELETE_MANAGER_ACTION_NAME = 'delete-manager';
-export const ACTION = { BACK: 'mailing' };
+export const ACTION = { YES: 'yes', NO: 'no', BACK: 'mailing' };

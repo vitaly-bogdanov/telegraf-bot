@@ -11,18 +11,11 @@ generator client {
   previewFeatures = ["referentialActions"]
 }
 
-model User {
-  id          Int     @id @default(autoincrement())
-  username    String
-  role        String  @default("unconfirmed")
-  telegramId  Int     @unique
-  password    String?
-}
-
 model Category {
   id          Int @id @default(autoincrement())
   description String
   contents    Content[]
+  times       Time[]
 }
 
 model Content {
@@ -32,4 +25,31 @@ model Content {
   format      String
   categoryId  Int
   category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id          Int     @id @default(autoincrement())
+  username    String
+  role        String  @default("unconfirmed")
+  telegramId  Int     @unique
+  password    String?
+  schedules    Schedule[]
+}
+
+model Schedule {
+  id        Int @id @default(autoincrement())
+  dayName   String
+  dayNumber Int
+  times     Time[]
+  userId    Int
+  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Time {
+  id         Int @id @default(autoincrement())
+  value      String
+  scheduleId Int
+  schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+  categoryId Int?
+  category   Category? @relation(fields: [categoryId], references: [id])
 }

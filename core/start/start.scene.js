@@ -17,9 +17,9 @@ export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text, { parse_mode: 'HTML' }));
     const isRegistered = await startService.isRegistered(telegramId);
     if (isRegistered) {
-      console.log(1);
+
     } else {
-      console.log(2);
+
       await startService.register(telegramId, username);
     }
     
