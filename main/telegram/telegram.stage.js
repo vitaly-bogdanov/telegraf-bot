@@ -16,6 +16,7 @@ import { editContentDescriptionScene } from '../../core/editContentDescription/i
 import { editContentDataScene } from '../../core/editContentData/index.js';
 import { deleteManagerScene } from '../../core/deleteManager/index.js';
 import { shedulesScene } from '../../core/schedules/index.js';
+import { sheduleScene } from '../../core/schedule/index.js';
 
 export const stage = new Scenes.Stage([
   startScene, menuScene, categoriesScene,
@@ -23,5 +24,5 @@ export const stage = new Scenes.Stage([
   contentsScene, deleteCategoryScene, addContentDescriptionScene,
   addContentDataScene, deleteContentScene, changeContentScene,
   editContentDescriptionScene, editContentDataScene, deleteManagerScene,
-  shedulesScene
+  shedulesScene, sheduleScene
 ]);

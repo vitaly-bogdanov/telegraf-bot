@@ -8,7 +8,7 @@ import { ACTION } from './schedules.constant.js';
  */
 export const scheduleKeyboardGenerator = (schedules) => {
   const buttons = schedules.reverse().reduce((memo, schedule) => {
-    memo.push([Markup.button.callback(`${schedule.dayName}`, `${ACTION.SCHEDULES}/${schedule.id}`)]);
+    memo.push([Markup.button.callback(`${schedule.dayName}`, `${ACTION.SCHEDULE}/${schedule.id}`)]);
     return memo;
   }, [ [Markup.button.callback('Назад 🔙', `${ACTION.BACK}`)] ]);
 

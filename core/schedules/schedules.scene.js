@@ -19,6 +19,10 @@ export const shedulesScene = new Scenes.BaseScene(SCHEDULES_ACTION_NAME)
   .action(ACTION.BACK, ctx => {
     ctx.scene.enter(ACTION.BACK);
   })
+  .action(new RegExp(`${ACTION.SCHEDULE}\/[0-9]+`), ctx => {
+    ctx.match.index = +ctx.match[0].split('/')[1];
+    ctx.scene.enter(ACTION.SCHEDULE);
+  })
   .leave(ctx => {
     clearMessageIdListInSessionHelper(ctx);
   });
