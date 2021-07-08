@@ -42,7 +42,7 @@ model Schedule {
   dayNumber Int
   times     Time[]
   userId    Int
-  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Time {

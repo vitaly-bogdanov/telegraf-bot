@@ -1,2 +1,2 @@
 export const SCHEDULE_ACTION_NAME = 'schedule';
-export const ACTION = { BACK: 'schedules' };
+export const ACTION = { BACK: 'schedules', TIME: 'time' };

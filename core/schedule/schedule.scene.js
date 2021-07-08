@@ -14,13 +14,17 @@ export const sheduleScene = new Scenes.BaseScene(SCHEDULE_ACTION_NAME)
     const schedule = await scheduleService.getSchedule(scheduleId);
     ctx.session.managerId = schedule.userId;
     const text = `📢 ${schedule.dayName}`;
-    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text, scheduleKeyboardGenerator(schedule)));
+    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text, scheduleKeyboardGenerator(schedule.times)));
   })
   .action(ACTION.BACK, ctx => {
     ctx.match.index = ctx.session.managerId;
+    delete ctx.session.managerId;
     ctx.scene.enter(ACTION.BACK);
   })
+  .action(new RegExp(`${ACTION.TIME}\/[0-9]+`), ctx => {
+    ctx.match.index = +ctx.match[0].split('/')[1];
+    ctx.scene.enter(ACTION.TIME);
+  })
   .leave(ctx => {
-    delete ctx.session.managerId;
     clearMessageIdListInSessionHelper(ctx);
   });

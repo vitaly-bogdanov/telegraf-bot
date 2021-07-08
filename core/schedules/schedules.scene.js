@@ -13,7 +13,7 @@ export const shedulesScene = new Scenes.BaseScene(SCHEDULES_ACTION_NAME)
   .enter(async ctx => {
     const managerId = ctx.match.index;
     const manager = await schedulesService.getManager(managerId);
-    const text = `ID менеджера: ${manager.telegramId}\nUSER: @${manager.username}\nВыберите день недели, который хотите настроить:`;
+    const text = `ID: ${manager.telegramId}\nМенеджер: @${manager.username}\nВыберите день недели,\nкоторый хотите настроить:`;
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text, scheduleKeyboardGenerator(manager.schedules)));
   })
   .action(ACTION.BACK, ctx => {
