@@ -9,6 +9,7 @@ import { ADD_MANAGER_ACTION_NAME, ACTION } from './addManager.constant.js';
 import { addCategoryKeyboard } from './addManager.keyboard.js';
 import { addManagerService } from './addManager.service.js';
 import { isTelegramIdValid } from '../../lib/telegram/index.js';
+import { SCHEDULER_EVENT_NAME, schedulerEmitter } from '../../main/scheduler/index.js';
 
 export const addManagerScene = new Scenes.BaseScene(ADD_MANAGER_ACTION_NAME)
   .enter(async ctx => {
@@ -27,6 +28,7 @@ export const addManagerScene = new Scenes.BaseScene(ADD_MANAGER_ACTION_NAME)
     if (await addManagerService.isUserExist(telegramId)) {
       await addManagerService.setManagerRole(telegramId);
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Менеджер добавлен 👍'));
+      schedulerEmitter.emit(`${SCHEDULER_EVENT_NAME}-${telegramId}`);
       setTimeout(() => ctx.scene.enter(ACTION.BACK), 1500);
     } else {
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Кажется такого пользователя нет в боте!\nПроверьте правильность написания ID'));

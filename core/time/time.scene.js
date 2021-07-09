@@ -21,7 +21,8 @@ export const timeScene = new Scenes.BaseScene(TIME_ACTION_NAME)
     ctx.scene.enter(ACTION.SET_TIME);
   })
   .action(ACTION.SET_CATEGORY, ctx => {
-
+    ctx.match.index = ctx.session.timeId;
+    ctx.scene.enter(ACTION.SET_CATEGORY);
   })
   .action(ACTION.BACK, ctx => {
     ctx.match.index = ctx.session.scheduleId;

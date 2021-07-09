@@ -1,55 +1,63 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialActions"]
+}
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["referentialActions"]
-}
-
 model Category {
-  id          Int @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   description String
   contents    Content[]
   times       Time[]
 }
 
 model Content {
-  id          Int @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   description String
   data        String
   format      String
   categoryId  Int
   category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  task        Task?
 }
 
 model User {
-  id          Int     @id @default(autoincrement())
-  username    String
-  role        String  @default("unconfirmed")
-  telegramId  Int     @unique
-  password    String?
-  schedules    Schedule[]
+  id         Int        @id @default(autoincrement())
+  username   String
+  role       String     @default("unconfirmed")
+  telegramId Int        @unique
+  password   String?
+  schedules  Schedule[]
+  tasks      Task[]
 }
 
 model Schedule {
-  id        Int @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   dayName   String
   dayNumber Int
-  times     Time[]
   userId    Int
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  times     Time[]
 }
 
 model Time {
-  id         Int @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   value      String
   scheduleId Int
-  schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
   categoryId Int?
   category   Category? @relation(fields: [categoryId], references: [id])
+  schedule   Schedule  @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+}
+
+model Task {
+  id        Int @id @default(autoincrement())
+  status    String @default("in progress")
+  contentId Int
+  content   Content @relation(fields: [contentId], references: [id])
+  userId    Int
+  user      User @relation(fields: [userId], references: [id])
 }
