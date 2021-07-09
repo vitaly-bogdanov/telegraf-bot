@@ -22,7 +22,7 @@ model Content {
   format      String
   categoryId  Int
   category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  task        Task?
+  task        Task[]
 }
 
 model User {

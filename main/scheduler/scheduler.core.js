@@ -20,12 +20,15 @@ export const startSchedule = async () => {
     for (let schedule of schedules) {
       for (let time of schedule.times) {
         if (time.categoryId) {
+          console.log(time)
           const randomContent = await scheduleService.getRandomContent(time.categoryId, schedule.userId);
           if (randomContent) {
             const { randomHours, randomMinutes } = getRandomIntFromIntervalHoursAdnMinutes(time.value);
+            console.log(randomHours, randomMinutes, 'random');
             cron.schedule(`0 ${randomMinutes} ${randomHours} * * *`, async () => {
+              console.log(schedule.userId, randomContent.id, 'in schedule');
               await scheduleService.createTask(schedule.userId, randomContent.id);
-              schedulerEmmiter.emit(`${SCHEDULER_EVENT_NAME}-${schedule.user.telegramId}`);
+              schedulerEmitter.emit(`${SCHEDULER_EVENT_NAME}-${schedule.user.telegramId}`);
             }, scheduleConfig);
           }
         }
