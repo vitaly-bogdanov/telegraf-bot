@@ -58,8 +58,7 @@ export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
   })
   .action(new RegExp(`^${ACTION.REMOVE}/[0-9]+$`), async ctx => {
     const taskId = +ctx.match[0].split('/')[1];
-    const task = await startService.setTaskComplete(taskId);
-
+    await startService.setTaskComplete(taskId);
     ctx.scene.reenter();
   })
   .on('message', async ctx => {
