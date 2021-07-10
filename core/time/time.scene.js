@@ -12,7 +12,8 @@ export const timeScene = new Scenes.BaseScene(TIME_ACTION_NAME)
   .enter(async ctx => {
     ctx.session.timeId = ctx.match.index;
     const time = await timeService.getTime(ctx.session.timeId);
-    ctx.session.scheduleId = time.schedule.id;
+    console.log(time);
+    ctx.session.scheduleId = time.scheduleId;
     const text = `📢 ${time.schedule.dayName}\n\n😎 Менеджер: @${time.schedule.user.username}, ${time.schedule.user.telegramId}\n🕑 Диапазон времени: ${time.value}\n🗂 Категория: ${time.category ? time.category.description : 'пусто'}`;
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text, timeKeyboard));
   })
