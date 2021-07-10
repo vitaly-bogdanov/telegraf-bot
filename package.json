@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "set-admin-role": "node cli.js set-admin-role"
+    "set-admin-role": "node cli.js set-admin-role",
+    "cli-help": "node cli.js help"
   },
   "dependencies": {
     "@prisma/client": "^2.26.0",
