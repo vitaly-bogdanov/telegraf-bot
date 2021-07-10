@@ -37,7 +37,7 @@ class ScheduleService {
    * @param {number} contentId 
    */
   async createTask(userId, contentId) {
-    return this.prismaService.task.create({ data: { userId, contentId } });
+    return this.prismaService.task.create({ data: { userId, contentId }, include: { content: true } });
   }
 
 };
