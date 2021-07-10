@@ -27,8 +27,8 @@ export const startSchedule = async () => {
             console.log(randomHours, randomMinutes, 'random');
             cron.schedule(`0 ${randomMinutes} ${randomHours} * * *`, async () => {
               console.log(schedule.userId, randomContent.id, 'in schedule');
-              await scheduleService.createTask(schedule.userId, randomContent.id);
-              schedulerEmitter.emit(`${SCHEDULER_EVENT_NAME}-${schedule.user.telegramId}`);
+              const task = await scheduleService.createTask(schedule.userId, randomContent.id);
+              schedulerEmitter.emit(`${SCHEDULER_EVENT_NAME}-${schedule.user.telegramId}`, task);
             }, scheduleConfig);
           }
         }
