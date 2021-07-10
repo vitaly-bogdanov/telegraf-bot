@@ -1,4 +1,11 @@
-export const getTodaysNumberHelper = () => new Date().getDay();
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+export const getTodaysNumberHelper = () => {
+  process.env.TZ = process.env.SCHEDULER_TIME_ZONE;
+  return new Date().getDay();
+};
 
 export const getRandomElemetFromArray = (array) => {
   const random = Math.floor(Math.random() * array.length);
