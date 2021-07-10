@@ -1,6 +1,6 @@
 import { FORMAT, SLEEP_MS, sleepHelper } from '../../lib/telegram/index.js';
 import { startTaskKeyboardGenerator } from './start.keyboard.js';
-import { saveMessageIdInSessionFromReplyHelper } from '../../lib/telegram/index.js';
+import { saveMessageIdInSessionFromReplyHelper } from '../../main/telegram/index.js';
 
 export const startTaskRenderHelper = async (task) => {
   switch(task.content.format) {
