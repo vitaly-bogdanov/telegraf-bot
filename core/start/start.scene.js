@@ -68,6 +68,8 @@ export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
     setTimeout(() => ctx.scene.reenter(), 2000);
   })
   .leave(ctx => {
-    schedulerEmitter.removeListener(`${SCHEDULER_EVENT_NAME}-${ctx.session.telegramId}`, () => {});
+    if (ctx.session.currentUser.role === ROLE.MANAGER) {
+      schedulerEmitter.removeListener(`${SCHEDULER_EVENT_NAME}-${ctx.session.telegramId}`, () => {});
+    }  
     clearMessageIdListInSessionHelper(ctx);
   });
