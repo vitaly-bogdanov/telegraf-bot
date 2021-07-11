@@ -13,10 +13,3 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - ${DB_PORT}:5432
-  
-  node:
-    build: .
-    ports:
-      - 1234:1234
-    links: 
-      - postgress

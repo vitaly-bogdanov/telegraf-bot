@@ -4,16 +4,19 @@ import { COMMAND } from './cli.constant.js';
 
 export const cliCore = async () => {
   (async () => {
+
+    console.log(process.argv);
+
     switch (process.argv[2]) {
       case COMMAND.SET_ADMIN_ROLE:
         const password = getPassword();
         const telegramId = getTelegramId();
         await cliService.setAdminRole(telegramId, password);
         break;
-        
+    
       //...
       case COMMAND.HELP:
-        console.log(`yarn ${COMMAND.SET_ADMIN_ROLE} --id <your-id> --password <your-password> - зарегистрировать админ аккаунт`);
+        console.log(`npm run ${COMMAND.SET_ADMIN_ROLE} --id <your-id> --password <your-password> - зарегистрировать админ аккаунт`);
         break;
       default:
         throw Error('Command error')
