@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js",
+    "prod": "node index.js",
     "set-admin-role": "node cli.js set-admin-role",
     "cli-help": "node cli.js help"
   },

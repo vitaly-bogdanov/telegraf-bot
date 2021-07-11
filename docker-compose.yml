@@ -13,14 +13,10 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - ${DB_PORT}:5432
-  # node:
-  #   image: node:latest
-  #   user: node
-  #   working_dir: /home/node/app
-  #   environment:
-  #     - NODE_ENV=production
-  #   volumes:
-  #     - ./:/home/node/app
-  #   expose:
-  #     - "8081"
-  #   command: "yarn start"
+  
+  node:
+    build: .
+    ports:
+      - 1234:1234
+    links: 
+      - postgress

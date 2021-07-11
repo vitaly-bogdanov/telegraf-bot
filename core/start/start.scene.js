@@ -15,6 +15,9 @@ import { startTaskRenderHelper } from './start.helper.js';
 
 export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
   .enter(async (ctx) => {
+
+    schedulerEmitter.on('test', async (task) => console.log(task));
+
     const telegramId = ctx.message?.from.id || ctx.session.telegramId;
     const username = ctx.message?.from.username || ctx.session.username;
     if (!ctx.session.telegramId) ctx.session.telegramId = telegramId;
@@ -32,9 +35,9 @@ export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('📢 Входящие рассылки: '));
       const tasks = await startService.getTasks(telegramId);
       for (let task of tasks) {
-        await startTaskRenderHelper(task);
+        await startTaskRenderHelper(ctx, task);
       }
-      schedulerEmitter.on(`${SCHEDULER_EVENT_NAME}-${telegramId}`, async (task) => await startTaskRenderHelper(task));
+      schedulerEmitter.on(`${SCHEDULER_EVENT_NAME}-${telegramId}`, async (task) => await startTaskRenderHelper(ctx, task));
     }
   })
   .on('text', async (ctx) => {
