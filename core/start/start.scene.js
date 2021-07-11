@@ -15,9 +15,6 @@ import { startTaskRenderHelper } from './start.helper.js';
 
 export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
   .enter(async (ctx) => {
-
-    schedulerEmitter.on('test', async (task) => console.log(task));
-
     const telegramId = ctx.message?.from.id || ctx.session.telegramId;
     const username = ctx.message?.from.username || ctx.session.username;
     if (!ctx.session.telegramId) ctx.session.telegramId = telegramId;
@@ -71,5 +68,6 @@ export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
     setTimeout(() => ctx.scene.reenter(), 2000);
   })
   .leave(ctx => {
+    schedulerEmitter.removeListener(`${SCHEDULER_EVENT_NAME}-${ctx.session.telegramId}`, () => {});
     clearMessageIdListInSessionHelper(ctx);
   });

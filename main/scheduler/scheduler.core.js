@@ -16,8 +16,6 @@ const m = +process.env.EVERY_DAY_PLANING_TIME.split(':')[1];
 
 export const startSchedule = async () => {
 
-  getTodaysNumberHelper();
-
   cron.schedule(`0 ${m} ${h} * * *`, async () => {
     const dayNumber = getTodaysNumberHelper();
     const schedules = await scheduleService.getSchedules(dayNumber);
