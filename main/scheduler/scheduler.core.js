@@ -1,5 +1,6 @@
 import cron from 'node-cron';
 import dotenv from 'dotenv';
+import fs from 'fs';
 
 import { scheduleService } from './scheduler.service.js';
 import { getTodaysNumberHelper, getRandomIntFromIntervalHoursAdnMinutes } from './sceduler.helper.js';
@@ -11,15 +12,16 @@ dotenv.config();
 
 const scheduleConfig = { timezone: process.env.TZ, scheduled: true };
 
-const h = +process.env.EVERY_DAY_PLANING_TIME.split(':')[0];
-const m = +process.env.EVERY_DAY_PLANING_TIME.split(':')[1];
+const config = JSON.parse(fs.readFileSync('./main/cli/cli.config.js', 'utf-8'))
+
+const h = +config['init-time'].split(':')[0];
+const m = +config['init-time'].split(':')[1];
 
 export const startSchedule = async () => {
-
   cron.schedule(`0 ${m} ${h} * * *`, async () => {
     const dayNumber = getTodaysNumberHelper();
     const schedules = await scheduleService.getSchedules(dayNumber);
-    for (let schedule of schedules) {
+    for (let schedule of schedules.reverse()) {
       for (let time of schedule.times) {
         if (time.categoryId) {
           const randomContent = await scheduleService.getRandomContent(time.categoryId, schedule.userId);

@@ -4,6 +4,6 @@ services:
   node:
     build: .
     ports:
-      - 1234:1234
+      - 8080:1234
     links: 
       - postgress
