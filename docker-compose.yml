@@ -3,8 +3,8 @@ version: '3.1'
 services:
   postgress:
     image: postgres
-    restart: always
     working_dir: /home/node/app
+    restart: always
     env_file:
       - .env
     environment:
