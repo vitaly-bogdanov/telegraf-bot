@@ -37,18 +37,6 @@ export async function main() {
     ] }}
   });
 
-  await prisma.user.create({ data: { username: 'kaliummati', telegramId: 357594609, role: 'manager', schedules: {
-    create: [
-      { dayNumber: 1, dayName: 'Понедельник', times: { create: initialTimeValues } },
-      { dayNumber: 2, dayName: 'Вторник', times: { create: initialTimeValues } },
-      { dayNumber: 3, dayName: 'Среда', times: { create: initialTimeValues } },
-      { dayNumber: 4, dayName: 'Четверг', times: { create: initialTimeValues } },
-      { dayNumber: 5, dayName: 'Пятница', times: { create: initialTimeValues } },
-      { dayNumber: 6, dayName: 'Суббота', times: { create: initialTimeValues } },
-      { dayNumber: 0, dayName: 'Воскресенье', times: { create: initialTimeValues } }
-    ] }}
-  });
-
   await prisma.user.create({ data: { username: 'coldbrew1337', telegramId: 1220189940, role: 'manager', schedules: {
     create: [
       { dayNumber: 1, dayName: 'Понедельник', times: { create: initialTimeValues } },
