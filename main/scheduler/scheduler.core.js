@@ -21,6 +21,9 @@ const m = +config['init-time'].split(':')[1];
 
 export const startSchedule = async () => {
   cron.schedule(`0 ${m} ${h} * * *`, async () => {
+    console.log('!!!!');
+    console.log('INIT PLANING!');
+    console.log('!!!!');
     const dayNumber = getTodaysNumberHelper();
     const schedules = await scheduleService.getSchedules(dayNumber);
     for (let schedule of schedules.reverse()) {
@@ -29,9 +32,14 @@ export const startSchedule = async () => {
           const randomContent = await scheduleService.getRandomContent(time.categoryId, schedule.userId);
           if (randomContent) {
             const { randomHours, randomMinutes } = getRandomIntFromIntervalHoursAdnMinutes(time.value);
+            console.log('---');
+            console.log(randomHours, randomMinutes);
+            console.log('---');
             cron.schedule(`0 ${randomMinutes} ${randomHours} * * *`, async () => {
+              console.log('Рассылка запланированна!');
               sleepHelper(5000)
               const task = await scheduleService.createTask(schedule.userId, randomContent.id);
+              console.log(task);
               schedulerEmitter.emit(`${SCHEDULER_EVENT_NAME}-${schedule.user.telegramId}`, task)
             }, scheduleConfig);
           }

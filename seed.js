@@ -9,13 +9,13 @@ const { PrismaClient } = Prisma;
 const prisma = new PrismaClient();
 
 const initialTimeValues = [
-  { value: '10:00-11:25' },
-  { value: '10:00-11:25' },
-  { value: '14:00-15:00' },
-  { value: '16:00-17:00' },
-  { value: '18:00-19:00' },
-  { value: '20:00-21:00' },
-  { value: '22:00-23:00' }
+  { value: '06:20-06:40' },
+  { value: '06:40-06:59' },
+  { value: '06:35-06:40' },
+  { value: '06:18-06:25' },
+  { value: '06:29-06:40' },
+  { value: '06:24-06:38' },
+  { value: '06:34-06:50' }
 ];
 
 const initialData = Array.from(Array(10).keys()).map(() => ({ 
