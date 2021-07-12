@@ -56,11 +56,11 @@ export async function main() {
   const users = await prisma.user.findMany();
   const contents = await prisma.content.findMany();
 
-  for (let user of users) {
-    for (let content of contents) {
-      await prisma.task.create({ data: { contentId: content.id, userId: user.id, status: "in progress" }, include: { content: true } });
-    }
-  }
+  // for (let user of users) {
+  //   for (let content of contents) {
+  //     await prisma.task.create({ data: { contentId: content.id, userId: user.id, status: "in progress" }, include: { content: true } });
+  //   }
+  // }
 
   const times = await prisma.time.findMany();
 
