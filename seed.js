@@ -9,10 +9,10 @@ const { PrismaClient } = Prisma;
 const prisma = new PrismaClient();
 
 const initialTimeValues = [
-  { value: '06:20-06:40' },
+  { value: '06:25-06:40' },
   { value: '06:40-06:59' },
   { value: '06:35-06:40' },
-  { value: '06:18-06:25' },
+  { value: '06:24-06:27' },
   { value: '06:29-06:40' },
   { value: '06:24-06:38' },
   { value: '06:34-06:50' }
