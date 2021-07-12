@@ -12,7 +12,9 @@ dotenv.config();
 
 const scheduleConfig = { timezone: process.env.TZ, scheduled: true };
 
-const config = JSON.parse(fs.readFileSync('../cli/cli.config.js', 'utf-8'))
+const config = JSON.parse(fs.readFileSync('./main/cli/cli.config.json', 'utf-8'))
+
+console.log(config);
 
 const h = +config['init-time'].split(':')[0];
 const m = +config['init-time'].split(':')[1];
