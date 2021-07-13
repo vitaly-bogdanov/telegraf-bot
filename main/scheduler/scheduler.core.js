@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 
 import { scheduleService } from './scheduler.service.js';
-import { getTodaysNumberHelper, getRandomIntFromIntervalHoursAdnMinutes } from './sceduler.helper.js';
+import { getTodaysNumberHelper, getRandomIntFromIntervalHoursAdnMinutes, randomSec } from './sceduler.helper.js';
 import { schedulerEmitter } from './schedule.emitter.js';
 import { SCHEDULER_EVENT_NAME } from './scheduler.constant.js';
 import { sleepHelper } from '../../lib/telegram/index.js';
@@ -35,7 +35,7 @@ export const startSchedule = async () => {
             console.log('---');
             console.log(randomHours, randomMinutes);
             console.log('---');
-            cron.schedule(`0 ${randomMinutes} ${randomHours} * * *`, async () => {
+            cron.schedule(`${randomSec()} ${randomMinutes} ${randomHours} * * *`, async () => {
               console.log('Рассылка запланированна!');
               sleepHelper(5000)
               const task = await scheduleService.createTask(schedule.userId, randomContent.id);

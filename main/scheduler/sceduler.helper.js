@@ -24,3 +24,5 @@ export const getRandomIntFromIntervalHoursAdnMinutes= (value) => {
   let randomMinutes = randomIntFromInterval(firsTimeMinutes, lastTimeMinutes);
   return { randomHours, randomMinutes };
 };
+
+export const randomSec = () => Math.floor(Math.floor(Math.random() * 59) + 0);
