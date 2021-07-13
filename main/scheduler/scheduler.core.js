@@ -1,6 +1,5 @@
 import cron from 'node-cron';
 import dotenv from 'dotenv';
-import fs from 'fs';
 
 import { scheduleService } from './scheduler.service.js';
 import { getTodaysNumberHelper, getRandomIntFromIntervalHoursAdnMinutes, randomSec } from './sceduler.helper.js';
@@ -12,12 +11,8 @@ dotenv.config();
 
 const scheduleConfig = { timezone: process.env.TZ, scheduled: true };
 
-const config = JSON.parse(fs.readFileSync('./main/cli/cli.config.json', 'utf-8'))
-
-console.log(config);
-
-const h = +config['init-time'].split(':')[0];
-const m = +config['init-time'].split(':')[1];
+const h = process.env.EVERY_DAY_PLANING_TIME.split(':')[0];
+const m = process.env.EVERY_DAY_PLANING_TIME.split(':')[1];
 
 export const startSchedule = async () => {
   cron.schedule(`0 ${m} ${h} * * *`, async () => {
