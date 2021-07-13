@@ -25,12 +25,12 @@ export const timeSetDiapasoneScene = new Scenes.BaseScene(TIME_SET_DIAPASONE)
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('✅ Готово!'));
       ctx.match = {};
       ctx.match.index = ctx.session.timeId;
-      setTimeout(() => ctx.scene.enter(ACTION.BACK), 1500);
+      setTimeout(() => ctx.scene.enter(ACTION.BACK), 700);
     } else {
       ctx.match = {};
       ctx.match.index = ctx.session.timeId;
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('⛔️ Временной диапазон введен не корректно!'));
-      setTimeout(() => ctx.scene.reenter(), 500);
+      setTimeout(() => ctx.scene.reenter(), 700);
     }
   })
   .action(ACTION.BACK, ctx => { 

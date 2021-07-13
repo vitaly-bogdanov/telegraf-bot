@@ -16,7 +16,7 @@ export const deleteManagerScene = new Scenes.BaseScene(DELETE_MANAGER_ACTION_NAM
   .action(ACTION.YES, async ctx => {
     await deleteManagerService.destroy(ctx.session.managerId);
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Менеджер успешно удален 🗑'));
-    setTimeout(() => ctx.scene.enter(ACTION.BACK), 1500);
+    setTimeout(() => ctx.scene.enter(ACTION.BACK), 800);
   })
   .action(ACTION.NO, ctx => {
     ctx.scene.enter(ACTION.BACK);
