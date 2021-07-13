@@ -21,7 +21,7 @@ export const timeSetCategoryScene = new Scenes.BaseScene(TIME_SET_CATEGORY)
     const categoryId = +ctx.match[0].split('/')[1];
     await timeSetCategoryService.setCategory(ctx.session.timeId, categoryId);
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('✅ Готово!'));
-    setTimeout(() => ctx.scene.enter(ACTION.BACK), 1500);
+    setTimeout(() => ctx.scene.enter(ACTION.BACK), 500);
   })
   .action(ACTION.BACK, ctx => {
     ctx.scene.enter(ACTION.BACK);

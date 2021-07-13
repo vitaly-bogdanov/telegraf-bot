@@ -30,7 +30,7 @@ export const timeSetDiapasoneScene = new Scenes.BaseScene(TIME_SET_DIAPASONE)
       ctx.match = {};
       ctx.match.index = ctx.session.timeId;
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('⛔️ Временной диапазон введен не корректно!'));
-      setTimeout(() => ctx.scene.reenter(), 1500);
+      setTimeout(() => ctx.scene.reenter(), 500);
     }
   })
   .action(ACTION.BACK, ctx => { 
