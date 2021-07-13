@@ -27,7 +27,7 @@ export const addManagerScene = new Scenes.BaseScene(ADD_MANAGER_ACTION_NAME)
     if (await addManagerService.isUserExist(telegramId)) {
       await addManagerService.setManagerRole(telegramId);
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Менеджер добавлен 👍'));
-      setTimeout(() => ctx.scene.enter(ACTION.BACK), 1500);
+      setTimeout(() => ctx.scene.enter(ACTION.BACK), 500);
     } else {
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Кажется такого пользователя нет в боте!\nПроверьте правильность написания ID'));
       setTimeout(() => ctx.scene.reenter(), 1500);
