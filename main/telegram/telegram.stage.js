@@ -20,6 +20,7 @@ import { sheduleScene } from '../../core/schedule/index.js';
 import { timeScene } from '../../core/time/index.js';
 import { timeSetDiapasoneScene } from '../../core/timeSetDiapasone/index.js';
 import { timeSetCategoryScene } from '../../core/timeSetCategory/index.js';
+import { renameCategoryScene } from '../../core/renameCategory/index.js';
 
 export const stage = new Scenes.Stage([
   startScene, menuScene, categoriesScene,
@@ -28,5 +29,5 @@ export const stage = new Scenes.Stage([
   addContentDataScene, deleteContentScene, changeContentScene,
   editContentDescriptionScene, editContentDataScene, deleteManagerScene,
   shedulesScene, sheduleScene, timeScene, timeSetDiapasoneScene,
-  timeSetCategoryScene
+  timeSetCategoryScene, renameCategoryScene
 ]);

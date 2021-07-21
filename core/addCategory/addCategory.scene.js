@@ -21,7 +21,7 @@ export const addCategoryScene = new Scenes.BaseScene(ADD_CATEGORY_ACTION_NAME)
     await addCategoryService.createCategory(categoryDescription);
     const text = 'Категория успешно создана 👍'
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text))
-    setTimeout(() => ctx.scene.enter(ACTION.BACK), 1500);
+    setTimeout(() => ctx.scene.enter(ACTION.BACK), 800);
   })
   .on('message', async ctx => {
     saveMessageIdInSessionFromQueryHelper(ctx);

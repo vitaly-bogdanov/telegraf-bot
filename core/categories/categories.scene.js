@@ -27,6 +27,10 @@ export const categoriesScene = new Scenes.BaseScene(CATEGORIES_ACTION_NAME)
     ctx.match.index = +ctx.match[0].split('/')[1];
     ctx.scene.enter(ACTION.DELETE);
   })
+  .action(new RegExp(`${ACTION.RENAME}\/[0-9]+`), ctx => {
+    ctx.match.index = +ctx.match[0].split('/')[1];
+    ctx.scene.enter(ACTION.RENAME);
+  })
   .action(ACTION.ADD_CATEGORY, ctx => ctx.scene.enter(ACTION.ADD_CATEGORY))
   .action(ACTION.BACK, ctx => ctx.scene.enter(ACTION.BACK))
   .leave((ctx) => clearMessageIdListInSessionHelper(ctx));

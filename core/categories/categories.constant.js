@@ -5,5 +5,6 @@ export const ACTION = {
   BACK: 'menu', 
   ADD_CATEGORY: 'add-category', 
   DELETE: 'delete-category',
-  VIEW: CONTENTS_ACTION_NAME
+  VIEW: CONTENTS_ACTION_NAME,
+  RENAME: 'rename-category'
 };
