@@ -10,7 +10,7 @@ import { renameCategoryService } from './renameCategory.service.js';
 
 export const renameCategoryScene = new Scenes.BaseScene(RENAME_CATEGORY_ACTION_NAME)
   .enter(async ctx => {
-    ctx.session.categoryId = ctx.match.index
+    ctx.session.categoryId = ctx.match.index;
     await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Введите новое название категории 📝', renameCategoryKeyboard));
   })
   .action(ACTION.BACK, ctx => ctx.scene.enter(ACTION.BACK))
