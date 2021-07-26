@@ -18,8 +18,7 @@ export const deleteContentScene = new Scenes.BaseScene(DELETE_CONTENT_ACTION_NAM
   })
   .action(ACTION.YES, async ctx => {
     await deleteContentService.deleteContent(ctx.session.contentId);
-    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Категория успешно удалена 🗑'));
-    setTimeout(() => { ctx.scene.enter(ACTION.BACK) }, 1500);
+    ctx.scene.enter(ACTION.BACK);
   })
   .action(ACTION.NO, ctx => {
     ctx.scene.enter(ACTION.BACK);

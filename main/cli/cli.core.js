@@ -22,9 +22,6 @@ export const cliCore = async () => {
         const config = JSON.parse(fs.readFileSync(`./main/cli/cli.config.json`, 'utf-8'))
         config['init-time'] = `${h}:${m}`;
         fs.writeFileSync(`./main/cli/cli.config.json`, JSON.stringify(config));
-        setTimeout(() => {
-
-        }, 5000);
         break;
       //...
       case COMMAND.HELP:

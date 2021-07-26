@@ -19,16 +19,10 @@ export const addCategoryScene = new Scenes.BaseScene(ADD_CATEGORY_ACTION_NAME)
     saveMessageIdInSessionFromQueryHelper(ctx);
     const categoryDescription = ctx.message.text;
     await addCategoryService.createCategory(categoryDescription);
-    const text = 'Категория успешно создана 👍'
-    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text))
-    setTimeout(() => ctx.scene.enter(ACTION.BACK), 800);
+    ctx.scene.enter(ACTION.BACK);
   })
   .on('message', async ctx => {
     saveMessageIdInSessionFromQueryHelper(ctx);
-    const text = 'Нужно указать название для категории!';
-    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text));
-    setTimeout(() => {
-      ctx.scene.reenter();
-    }, 2000);
+    ctx.scene.reenter();
   })
   .leave(ctx => clearMessageIdListInSessionHelper(ctx));

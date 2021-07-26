@@ -37,3 +37,4 @@ export const contentsScene = new Scenes.BaseScene(CONTENTS_ACTION_NAME)
   })
   .action(ACTION.BACK, ctx => ctx.scene.enter(ACTION.BACK))
   .leave(ctx => clearMessageIdListInSessionHelper(ctx));
+  

@@ -44,8 +44,7 @@ export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
       if ((await startService.passwordValidate(ctx.session.currentUser.id, password))) {
         ctx.scene.enter(MENU_ACTION_NAME);
       } else {
-        await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Неверный пароль!'));
-        setTimeout(() => ctx.scene.reenter(), 1000);
+        ctx.scene.reenter();
       }
     } else {
       ctx.scene.reenter();
@@ -63,9 +62,7 @@ export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
   })
   .on('message', async ctx => {
     saveMessageIdInSessionFromQueryHelper(ctx);
-    const text = 'Ошибка!';
-    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text));
-    setTimeout(() => ctx.scene.reenter(), 2000);
+    ctx.scene.reenter();
   })
   .leave(ctx => {
     if (ctx.session.currentUser.role === ROLE.MANAGER) {

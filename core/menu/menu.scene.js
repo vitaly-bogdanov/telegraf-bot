@@ -14,8 +14,6 @@ export const menuScene = new Scenes.BaseScene(MENU_ACTION_NAME)
   .action(ACTION.MAILING, ctx => ctx.scene.enter(ACTION.MAILING))
   .on('message', async ctx => {
     saveMessageIdInSessionFromQueryHelper(ctx);
-    const text = 'Чумба, тут ничего не нужно вводить! 👽';
-    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text));
-    setTimeout(() => ctx.scene.reenter(), 2000);
+    ctx.scene.reenter();
   })
   .leave(ctx => clearMessageIdListInSessionHelper(ctx))

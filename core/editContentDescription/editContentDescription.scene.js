@@ -18,19 +18,14 @@ export const editContentDescriptionScene = new Scenes.BaseScene(EDIT_CONTENT_DES
   .on('text', async ctx => {
     saveMessageIdInSessionFromQueryHelper(ctx);
     await editContentDescriptionService.updateContent(ctx.session.contentId, ctx.message.text);
-    const text = 'Описание успешно отредактированно 👍';
-    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text));
-    setTimeout(() => ctx.scene.enter(ACTION.BACK), 1500);
+    ctx.scene.enter(ACTION.BACK);
   })
   .action(ACTION.BACK, ctx => {
     ctx.scene.enter(ACTION.BACK);
   })
   .on('message', async ctx => {
-    const text = 'Не валидный формат!';
-    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply(text));
-    setTimeout(() => {
-      ctx.scene.reenter();
-    }, 1500);
+    saveMessageIdInSessionFromQueryHelper(ctx);
+    ctx.scene.reenter();
   })
   .leave(ctx => {
     ctx.match = { index: ctx.session.contentId };

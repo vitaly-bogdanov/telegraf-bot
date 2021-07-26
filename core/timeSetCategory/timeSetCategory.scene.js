@@ -20,8 +20,7 @@ export const timeSetCategoryScene = new Scenes.BaseScene(TIME_SET_CATEGORY)
   .action(new RegExp(`${ACTION.SET}\/[0-9]+`), async ctx => {
     const categoryId = +ctx.match[0].split('/')[1];
     await timeSetCategoryService.setCategory(ctx.session.timeId, categoryId);
-    await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('✅ Готово!'));
-    setTimeout(() => ctx.scene.enter(ACTION.BACK), 700);
+    ctx.scene.enter(ACTION.BACK);
   })
   .action(ACTION.BACK, ctx => {
     ctx.scene.enter(ACTION.BACK);

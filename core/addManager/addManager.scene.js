@@ -20,17 +20,17 @@ export const addManagerScene = new Scenes.BaseScene(ADD_MANAGER_ACTION_NAME)
     saveMessageIdInSessionFromQueryHelper(ctx);
     if (!isTelegramIdValid(ctx.message.text)) {
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Id невалиден!'));
-      setTimeout(() => ctx.scene.reenter(), 1500);
+      ctx.scene.reenter();
       return;
     }
     const telegramId = +ctx.message.text;
     if (await addManagerService.isUserExist(telegramId)) {
       await addManagerService.setManagerRole(telegramId);
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Менеджер добавлен 👍'));
-      setTimeout(() => ctx.scene.enter(ACTION.BACK), 800);
+      ctx.scene.enter(ACTION.BACK);
     } else {
       await saveMessageIdInSessionFromReplyHelper(ctx, ctx.reply('Кажется такого пользователя нет в боте!\nПроверьте правильность написания ID'));
-      setTimeout(() => ctx.scene.reenter(), 800);
+      ctx.scene.reenter();
     }
   })
   .leave(ctx => clearMessageIdListInSessionHelper(ctx))
