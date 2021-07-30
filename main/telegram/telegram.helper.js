@@ -1,5 +1,11 @@
 export const clearMessageIdListInSessionHelper = (ctx) => {
-  ctx.session.messageIdList.forEach(msg => ctx.deleteMessage(msg));
+  for (let msg of ctx.session.messageIdList) {
+    try {
+      ctx.deleteMessage(msg)
+    } catch (error) {
+      continue;
+    }
+  }
   ctx.session.messageIdList = [];
 };
 

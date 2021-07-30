@@ -67,6 +67,6 @@ export const startScene = new Scenes.BaseScene(START_ACTION_NAME)
   .leave(ctx => {
     if (ctx.session.currentUser.role === ROLE.MANAGER) {
       schedulerEmitter.removeListener(`${SCHEDULER_EVENT_NAME}-${ctx.session.telegramId}`, () => {});
-    }  
+    }
     clearMessageIdListInSessionHelper(ctx);
   });
